@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Car Game</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">	
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			font-family: 'Josefin Sans', sans-serif;
+		}
+
+		.carGame{
+			width: 100%;
+			height: 100vh;
+			background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&w=1000&q=80');
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
+
+		.hide{
+			display: none;
+		}
+		.car, .enemy{
+			width: 50px;
+			height: 80px;
+			background: red;
+			position: absolute;
+			bottom:120px;
+			background-image: url('data:image/jpeg;base64,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');
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
+
+		.lines{
+			width: 10px;
+			height: 100px;
+			background: white;
+			position: absolute;
+			margin-left: 195px;
+		}
+
+		.gameArea{
+			width: 400px;
+			height: 100vh;
+			background: #2d3436;
+			margin: auto;
+			position: relative;
+			overflow: hidden;
+			border-right: 7px dashed #c8d6e5;
+			border-left: 7px dashed #c8d6e5;
+		}
+
+		.score {
+			position: absolute;
+			top: 15px;
+			left: 40px;
+			background: #10ac84;
+			width:300px;
+			/* height: 70px; */
+			line-height: 70px;
+			text-align: center;
+			color: white;
+			font-size: 1.5em;
+			/* font-family: fantasy; */
+			box-shadow: 0 5px 5px #777;
+		}
+
+		.startScreen{
+			position: absolute;
+			background: #ee5253;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			color: white;
+			z-index: 1;
+			text-align: center;
+			border: 1px solid #ff6b6b;
+			padding: 15px;
+			margin: auto;
+			width: 50%;
+			cursor: pointer;
+			font-family: carfont;
+			letter-spacing: 5;
+			font-size: 20px;
+			word-spacing: 3;
+			line-height: 30px;
+			text-transform: uppercase;
+			box-shadow: 0 5px 5px #777;
+		}
+	</style>
+</head>
+<body>
+         <div class="carGame">
+         	<div class="score"></div>
+         	<div class="startScreen">
+         		<p>Press here to start <br>
+         			Arrow keys to move <br>
+         		If you hit another car you will lose.</p>
+         	</div>
+         	<div class="gameArea"></div>
+         </div>
+
+         <script>
+         	const score = document.querySelector('.score');
+         	const startScreen = document.querySelector('.startScreen');
+            const gameArea = document.querySelector('.gameArea');
+
+            console.log(gameArea);
+
+            startScreen.addEventListener('click', start);
+
+            let player = {
+            	speed : 5, score : 0
+            };
+
+            let keys = {
+            	ArrowUp : false, ArrowDown : false, ArrowLeft : false, ArrowRight : false
+            }
+
+            document.addEventListener('keydown', keyDown);
+            document.addEventListener('keyup', keyUp);
+
+            function keyDown(e) {
+            	e.preventDefault();
+            	keys[e.key] = true;
+            	// console.log(e.key);
+            	// console.log(keys);
+            }
+
+              function keyUp(e) {
+            	e.preventDefault();
+            	keys[e.key] = false;
+            	// console.log(e.key);
+            	// console.log(keys);
+            }
+
+            function isCollide(a,b) {
+            	aRect = a.getBoundingClientRect();
+            	bRect = b.getBoundingClientRect();
+
+            	return !((aRect.bottom > bRect.top) || (aRect.top > bRect.bottom) || (aRect.right < bRect.left) || (aRect.left > bRect.right))
+            }
+
+            function moveLines(){
+            	let lines = document.querySelectorAll('.lines');
+
+            	lines.forEach(function(items){
+
+            		if (items.y >= 700) {
+            			items.y -= 750;
+            		}
+
+            		items.y += player.speed;
+            		items.style.top = items.y + "px";
+            	})
+            	 }
+
+            	 function endGame(){
+            	 	player.start = false;
+            	 	startScreen.classList.remove('hide');
+            	 	startScreen.innerHTML = "Game Over <br> Your final is " + player.score + "<br> Press here to Restart the Game.";
+            	 }
+
+            	  function moveEnemy(car){
+            	let enemy = document.querySelectorAll('.enemy');
+
+            	enemy.forEach(function(items){
+
+            		if (isCollide(car, items)){
+            			console.log("Boom Hit");
+            			endGame();
+            		}
+
+            		if (items.y >= 750) {
+            			items.y = -300;
+            			items.style.left = Math.floor(Math.random() * 350) + "px";
+            		}
+
+            		items.y += player.speed;
+            		items.style.top = items.y + "px";
+            	})
+            	 }
+
+
+            function gamePlay(){
+            	// console.log("Hey I am clicked.");
+            	let car = document.querySelector('.car');
+            	let road = gameArea.getBoundingClientRect();
+            	// console.log(road);
+            	if (player.start) {
+
+            		moveLines();
+            		moveEnemy(car);
+
+                    if (keys.ArrowUp && player.y > (road.top + 70) ) {
+                    	player.y -= player.speed
+                    }
+                    if (keys.ArrowDown  && player.y < (road.bottom - 85) ) {
+                    	player.y += player.speed
+                    }
+                      if (keys.ArrowLeft  && player.x > 0 ) {
+                    	player.x -= player.speed
+                    }
+                    if (keys.ArrowRight  && player.x < (road.width - 50) ) {
+                    	player.x += player.speed
+                    }
+
+                    car.style.top = player.y + "px";
+                    car.style.left = player.x + "px";
+
+            		window.requestAnimationFrame(gamePlay);
+            		console.log(player.score++);
+
+            		player.score++;
+            		let ps = player.score - 2;
+            		score.innerText = "Score: " + player.score;
+            	}
+            }
+
+            function start(){
+				// gameArea.classList.remove('hide');
+				startScreen.classList.add('hide');
+				gameArea.innerHTML = "";
+
+            	player.start = true;
+            	player.score = 0;
+				window.requestAnimationFrame(gamePlay);
+
+				for (x=0; x<5; x++){
+				let roadLine = document.createElement('div');
+				roadLine.setAttribute('class', 'lines');
+				roadLine.y = (x*150)
+				roadLine.style.top = roadLine.y + "px";
+				gameArea.appendChild(roadLine);	
+				}
+				
+				let car = document.createElement('div');
+				car.setAttribute('class', 'car');
+				// car.innerText = "Hey I am ur Car";
+				gameArea.appendChild(car);
+
+				player.x = car.offsetLeft;
+				player.y = car.offsetTop;
+
+				// console.log(car.offsetTop);
+				// console.log(car.offsetLeft);
+
+				for (x=0; x<3; x++){
+				let enemyCar = document.createElement('div');
+				enemyCar.setAttribute('class', 'enemy');
+				enemyCar.y = ((x+1) * 350) * -1;
+				enemyCar.style.top = enemyCar.y + "px";
+				enemyCar.style.backgroundColor  = randomColor();
+				enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
+				gameArea.appendChild(enemyCar);	
+				}
+            }
+
+            function randomColor() {
+            	function c(){
+            		let hex = Math.floor(Math.random() * 256).toString(16);
+            		return ("0" + String(hex)).substr(-2);
+            		// console.log()
+            	}
+            	return "#" + c() + c() + c();
+            }
+         </script>
+</body>
+</html>
